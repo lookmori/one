@@ -46,6 +46,6 @@ jobs:
           # will put all file under this path
           local_path: './build/*'
           # files will copy to under remote_path
-          remote_path: '/blog'
+          remote_path: '/root/blog'
           password: '${{secrets.SERVER_PASSWORD}}'
           # connection via sftp protocol only
