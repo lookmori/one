@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: '随心',
   tagline: '随心记录',
-  url: 'https://your-docusaurus-test-site.com',
+  url: 'http://lookmori.cn',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -22,10 +22,6 @@ const config = {
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want
   // to replace "en" with "zh-Hans".
-  i18n: {
-    defaultLocale: 'en',
-    locales: ['en'],
-  },
 
   presets: [
     [
@@ -36,17 +32,12 @@ const config = {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
         },
         blog: {
           showReadingTime: true,
           routeBasePath: "/",
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -70,6 +61,7 @@ const config = {
             docId: 'usually/index',
             position: 'right',
             label: '笔记',
+            to: 'docs/'
           },
           { to: '/', label: '博客', position: 'right' },
         ],
@@ -92,7 +84,7 @@ const config = {
             items: [
               {
                 label: 'Blog',
-                to: '/blog',
+                to: 'docs/usually',
               }
             ],
           },
