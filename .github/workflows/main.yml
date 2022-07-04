@@ -47,4 +47,5 @@ jobs:
           local_path: './build/*'
           # files will copy to under remote_path
           remote_path: '/blog'
+          password: '${{secrets.SERVER_PASSWORD}}'
           # connection via sftp protocol only
