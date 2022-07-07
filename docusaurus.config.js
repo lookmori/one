@@ -8,11 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: '随心',
   tagline: '随心记录',
-<<<<<<< HEAD
   url: 'http://lookmori.cn',
-=======
-  url: 'https://github.com/183338258072/blog.io',
->>>>>>> master
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
