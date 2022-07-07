@@ -6,7 +6,7 @@ name: CI
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
-    branches: [ "master" ]
+    branches: ["main"]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -27,25 +27,25 @@ jobs:
       - uses: actions/setup-node@v3.3.0
         with:
           node-version: 17
-          
+
       - name: npm install
         run: npm install
 
       - name: build
         run: npm run build
-        
+
       - name: SFTP Deploy
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
           # username
-          username: 'root'
+          username: "root"
           # your sftp server
-          server: '${{secrets.SERVER_IP}}'
+          server: "${{secrets.SERVER_IP}}"
           # your sftp server port, default to 22
-          ssh_private_key: '${{secrets.SERVER_SSH}}'
+          ssh_private_key: "${{secrets.SERVER_SSH}}"
           # will put all file under this path
-          local_path: './build/*'
+          local_path: "./build/*"
           # files will copy to under remote_path
-          remote_path: '/root/blog'
-          password: '${{secrets.SERVER_PASSWORD}}'
+          remote_path: "/home/build"
+          password: "${{secrets.SERVER_PASSWORD}}"
           # connection via sftp protocol only
