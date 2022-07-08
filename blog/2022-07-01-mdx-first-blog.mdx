@@ -15,3 +15,28 @@ tags: [chrome]
 :::
 
 <!--truncate-->
+
+:::note 官方文档
+
+```js
+https://developer.chrome.com/docs/extensions/mv3/getstarted/
+```
+
+:::
+
+```json title="manifest.json"
+{
+  "name": "测试", //插件名称
+  "description": "第一个插件开发!", //插件的描述信息
+  "version": "1.0", //插件版本
+  "manifest_version": 3, // 插件配置版本，目前最新的3
+  "background": {
+    "service_worker": "background.js" //后台启动文件，需要一直后台运行的文件可以在写在这个文件里，同时必须和manifest.json在同一级目录
+  },
+  "permissions": ["storage", "activeTab", "scripting"], // 需要用到的权限，都需要在这里声明
+  "action": {
+    "default_popup": "popup.html" // 点击插件时，弹出的文件
+  },
+  "options_page": "options.html" // 右键插件的菜单选项
+}
+```
