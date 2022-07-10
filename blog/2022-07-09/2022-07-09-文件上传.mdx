@@ -1,0 +1,64 @@
+---
+title: 文件上传操作
+authors: [shouren]
+tags: [javascript]
+---
+
+:::info 文件上传
+
+实验文件上传的一些操作
+
+:::
+
+<!--truncate-->
+
+```javascript live
+function SliceFile() {
+  function SelectFile(e) {
+    const { files } = e.target; //当前选中文件对象 files 是FileList 对象 ，文件以数组形式存在
+    console.log(files, "es");
+    console.log(createChunkFiles(files[0]));
+  }
+
+  //切片函数
+  function createChunkFiles(file) {
+    let current = 0; //当前文件分片位置
+    const chunkSize = 1 * 1024 * 1024; //分片大小
+    let chunk = [];
+    while (current < file.size) {
+      let a = file.slice(current, current + chunkSize);
+      chunk.push(a);
+      current += chunkSize;
+    }
+    return chunk; //将切片后的文件返回回去
+  }
+
+  return (
+    <>
+      <input
+        type="file"
+        id="selectFile"
+        style={{ opacity: 0 }}
+        onChange={SelectFile}
+      />
+      <label
+        htmlFor="selectFile"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          width: 100,
+          boxSizing: "borderBox",
+          height: 40,
+          borderRadius: 5,
+          backgroundColor: "#3A5BA0",
+          color: "#fff",
+          textAlign: "center",
+        }}
+      >
+        选择文件
+      </label>
+    </>
+  );
+}
+```

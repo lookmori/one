@@ -1,0 +1,14 @@
+.file {
+  /* display: none; */
+  opacity: 0;
+}
+.filesName {
+  display: inline-block;
+  width: 100px;
+  height: 40px;
+  border-radius: 5px;
+  line-height: 40px;
+  background-color:#3A5BA0 ;
+  color: aliceblue;
+  text-align: center;
+}
