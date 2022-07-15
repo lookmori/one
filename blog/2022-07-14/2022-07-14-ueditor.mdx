@@ -173,3 +173,17 @@ const [initData, setInitData] = useState('')
 5. 最终效果
 
 ![最终效果](./Ueditor.png)
+
+6. 其他问题
+
+2022-07-15 使用发现无法获取到输入后的内容，
+
+后边更改 Ueditor 组件为
+
+```js 将getUEContent 方法设置为静态方法
+  static getUEContent() {
+    return editor.getContent();
+  }
+```
+
+组件调用 UEditor.getContent() 即可获得输入内容
