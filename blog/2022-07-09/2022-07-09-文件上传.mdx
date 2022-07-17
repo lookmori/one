@@ -62,3 +62,19 @@ function SliceFile() {
   );
 }
 ```
+
+:::info 2022-07-17
+先使用 node.js 流处理验证
+:::
+
+:::caution node.js 遗留问题
+path.resolve()与 path.join()的区别
+:::
+
+```node
+const root = "D://root"; //假设这是当前地址
+
+path.join(__dirname, "/img");
+
+path.resolve(__dirname, "../", "hello");
+```
