@@ -77,16 +77,16 @@ const config = {
             ],
           },
           {
-            title: 'More',
+
             items: [
               {
-                label: 'Blog',
-                to: 'docs/usually',
+                label: '豫ICP备2022017677号-1',
+                href: 'https://beian.miit.gov.cn/#/Integrated/index'
               }
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} 随心, Inc. Built with Docusaurus.`,
       },
       prism: {
         theme: lightCodeTheme,
