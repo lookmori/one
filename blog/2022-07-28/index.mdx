@@ -1,0 +1,139 @@
+---
+title: 请求中断
+authors: [shouren]
+tags: [javascript]
+---
+
+在研究项目时发现一个关于请求的问题，如果当前页面请求过多，但是用户只是短暂的停留在当前页面，没有必要继续发送请求，这样会浪费资源，因此，我就在考虑能否将不需要的请求取消？
+
+:::tip AbortController 控制器
+[AbortController](https://developer.mozilla.org/zh-CN/docs/Web/API/AbortController)
+:::
+
+<!--truncate-->
+
+> 下边是一个简单实例
+
+- 首先要创建一个控制器
+
+```javascript
+const controller = new AbortController();
+```
+
+- 在 controller 上有一个`signal`属性,为了方便，下边我先进行解构
+
+```javascript
+const { signal } = controller;
+```
+
+- 在使用时将 signal 放在请求配置项中，例如: 使用 fetch 请求
+
+```javascript
+fetch(url, { signal }).then((res) => {
+  //...
+});
+```
+
+- 如果需要取消请求，调用 controller.abort() 即可取消请求
+
+```javascript live 实验
+function Code() {
+  const controller = new AbortController(); //实例
+
+  const { signal } = controller; //解构赋值
+
+  //发送请求
+  const sendRequest = async () => {
+    const res = await fetch("http://127.0.0.1:3001/abort", {
+      method: "POST",
+      signal,
+    }); //进行配置
+    console.log(res, "控制台查看network面板，请求会在10s后响应");
+  };
+
+  //取消请求
+  const cancelSendRequest = async () => {
+    controller.abort();
+  };
+  return (
+    <div style={{ width: "100%", display: "flex" }}>
+      <button
+        onClick={() => {
+          sendRequest();
+        }}
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          width: 100,
+          boxSizing: "borderBox",
+          height: 40,
+          borderRadius: 5,
+          backgroundColor: "#3A5BA0",
+          color: "#fff",
+          textAlign: "center",
+          border: "1px solid #fff",
+        }}
+      >
+        点击发送请求
+      </button>
+      <button
+        onClick={() => {
+          cancelSendRequest();
+        }}
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          width: 100,
+          boxSizing: "borderBox",
+          height: 40,
+          borderRadius: 5,
+          backgroundColor: "#3A5BA0",
+          color: "#fff",
+          textAlign: "center",
+          border: "1px solid #fff",
+        }}
+      >
+        取消请求
+      </button>
+    </div>
+  );
+}
+```
+
+以上是本次实验前端代码，以下为后端代码,主要使用 express
+
+```node title="AbortRequest.js"
+const express = require("express");
+const router = express.Router();
+
+router.post("/", (req, res) => {
+  setTimeout(() => {
+    res.send({ text: "请求已过去10s" });
+  }, 10000);
+});
+module.exports = router;
+```
+
+```node
+const express = require("express");
+const cors = require("cors");
+const path = require("path");
+const app = express();
+const port = 3001;
+
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(cors());
+
+// 引入路由文件
+const AbortRouter = require(path.join(__dirname + "/Router/AbortRequest.js"));
+
+// 处理函数
+app.use("/abort", AbortRouter);
+
+app.listen(port, () => {
+  console.log("server is running!");
+});
+```
