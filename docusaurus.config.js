@@ -54,14 +54,15 @@ const config = {
           src: 'img/love.jpg',
         },
         items: [
+          { to: '/', label: '博客', position: 'right' },
           {
-            type: 'doc',
-            docId: 'usually/index',
             position: 'right',
             label: '笔记',
-            to: 'docs/'
+            to: 'docs/allways/'
           },
-          { to: '/', label: '博客', position: 'right' },
+          {
+            to: 'docs/question/', label: '问题', position: 'right'
+          }
         ],
       },
       footer: {
