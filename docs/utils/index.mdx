@@ -1,0 +1,56 @@
+---
+title: 常用方法
+authors: [shouren]
+tags: [javascript]
+---
+
+- 防抖
+
+```javascript
+function debounce(fn, delay) {
+  let timer = null;
+  return function () {
+    const args = arguments;
+    let that = this;
+    if (timer) {
+      clearTimeout(timer);
+    }
+    timer = setTimeout(() => {
+      fn.call(that, args);
+    }, delay);
+  };
+}
+
+//调用示例
+function fn(data) {
+  console.log(data);
+}
+
+const testDebounce = debounce(fn, 500);
+testDebounce(data);
+```
+
+- 节流
+
+```javascript
+function throttle(fn, delay) {
+  let pre = 0;
+  return function () {
+    const that = this;
+    const args = arguments;
+    let now = Date.now();
+    if (now - pre > delay) {
+      fn.call(that, args);
+      pre = now;
+    }
+  };
+}
+
+//示例
+function testThrottle(data) {
+  console.log(data);
+}
+const testThrottleFn = throttle(testThrottle, 500);
+
+testThrottleFn(data);
+```

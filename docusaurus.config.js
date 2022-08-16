@@ -62,6 +62,9 @@ const config = {
           },
           {
             to: 'docs/question/', label: '问题', position: 'right'
+          },
+          {
+            to: 'docs/utils/', label: '常用', position: 'right'
           }
         ],
       },
