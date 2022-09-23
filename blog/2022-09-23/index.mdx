@@ -1,0 +1,27 @@
+---
+title: 了解几个API
+authors: [shouren]
+tags: [javascript]
+---
+
+:::tip
+
+- MutationObserver
+- Intersection Observer
+- ResizeObserver
+
+:::
+
+<!--truncate-->
+
+### MutationObserver
+
+`MutationObserver` 接口提供了监视对 DOM 树所做更改的能力，也就是说通过这种方式可以检测到 DOM 树结构的变化，来做一下需求
+
+### Intersection Observer
+
+`Intersection Observer` 接口可以检测到两个 dom 节点内容是否产生交叉，可以利用这个 API 判断当前元素是否在窗口可视范围，依次来加载资源，常见的就是图片的懒加载
+
+### ResizeObserver
+
+`ResizeObserver` 接口兼容性不太好，正在适配。主要检测元素内容区域的变化，需要搭配节流函数，
